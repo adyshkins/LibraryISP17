@@ -1,0 +1,47 @@
+﻿<Window x:Class="LibraryISP17.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:LibraryISP17"
+        mc:Ignorable="d"
+        WindowStartupLocation="CenterScreen"
+        Title="MainWindow" Height="450" Width="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="8*"/>
+        </Grid.RowDefinitions>
+
+        <TextBlock Text="Главное окно"
+                   VerticalAlignment="Center"
+                   HorizontalAlignment="Center"
+                   FontSize="25"/>
+
+        <WrapPanel Grid.Row="1" 
+                   HorizontalAlignment="Center"
+                   VerticalAlignment="Center">
+            <Button x:Name="btnListReader"
+                    Content="Список читателей"
+                    Width="200"
+                    Height="40"
+                    FontSize="18"
+                    Margin="10 0"
+                    Click="btnListReader_Click"/>
+
+            <Button x:Name="btnListBok"
+                    Content="Список книг"
+                    Width="200"
+                    Height="40"
+                    FontSize="18"
+                    Margin="10 0"/>
+
+            <Button x:Name="btn"
+                    Content="Выдать книгу"
+                    Width="200"
+                    Height="40"
+                    FontSize="18"
+                    Margin="10 0"/>
+        </WrapPanel>
+    </Grid>
+</Window>
