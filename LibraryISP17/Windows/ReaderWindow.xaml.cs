@@ -111,5 +111,21 @@ namespace LibraryISP17.Windows
             }
 
         }
+
+        private void lvReader_MouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            var editReader = new EF.Reader();
+
+            if (lvReader.SelectedItem is EF.Reader)
+            {
+                editReader = lvReader.SelectedItem as EF.Reader;
+            }
+
+            AddReaderWindow addReaderWindow = new AddReaderWindow(editReader);
+            this.Opacity = 0.2;
+            addReaderWindow.ShowDialog();
+            lvReader.ItemsSource = AppData.Context.Reader.ToList();
+            this.Opacity = 1;
+        }
     }
 }

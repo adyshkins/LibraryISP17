@@ -20,18 +20,49 @@ namespace LibraryISP17.Windows
     /// </summary>
     public partial class AddReaderWindow : Window
     {
+        EF.Reader editReader = new EF.Reader();
+
+        bool isEdit = true;
+
         public AddReaderWindow()
         {
             InitializeComponent();
             cmbGender.ItemsSource = AppData.Context.Gender.ToList();
             cmbGender.DisplayMemberPath = "NameGender";
             cmbGender.SelectedIndex = 0;
+
+            isEdit = false;
         }
 
-        private void btAdd_Click(object sender, RoutedEventArgs e)
+        public AddReaderWindow(EF.Reader reader)
+        {
+            InitializeComponent();
+
+            //заполнение комбобокса
+            cmbGender.ItemsSource = AppData.Context.Gender.ToList();
+            cmbGender.DisplayMemberPath = "NameGender";
+
+            // изменение заголовка и текста кнопки
+            tbTitle.Text = "Изменение данных читателя";
+            btAdd.Content = "Изменить";
+            // передача значений в поля
+
+            editReader = reader;
+
+            txtLastName.Text = editReader.LastName;
+            txtFirstName.Text = editReader.FirstName;
+            txtPhone.Text = editReader.Phone;
+            txtEmail.Text = editReader.Email;
+            txtAddress.Text = editReader.Address;
+            cmbGender.SelectedIndex = editReader.IdGender - 1;
+
+            isEdit = true;
+        }
+
+            private void btAdd_Click(object sender, RoutedEventArgs e)
         {
             // Валидация
-
+            
             // проверка на пустоту
             if (string.IsNullOrWhiteSpace(txtLastName.Text))
             {
@@ -89,33 +120,57 @@ namespace LibraryISP17.Windows
                 return;
             }
 
-            try
+            if (isEdit)
             {
-                var resultClick = MessageBox.Show("Вы уверены?", "Подтверите добавление", MessageBoxButton.YesNo, MessageBoxImage.Question);
-                if (resultClick == MessageBoxResult.Yes)
+                try
                 {
-                    // Добавление нового читателя
-                    EF.Reader newReader = new EF.Reader();
-                    newReader.LastName = txtLastName.Text;
-                    newReader.FirstName = txtFirstName.Text;
-                    newReader.Phone = txtPhone.Text;
-                    newReader.Email = txtEmail.Text;
-                    newReader.Address = txtAddress.Text;
-                    newReader.IdGender = cmbGender.SelectedIndex + 1;
-
-                    AppData.Context.Reader.Add(newReader);
-
+                    editReader.LastName = txtLastName.Text;
+                    editReader.FirstName = txtFirstName.Text;
+                    editReader.Phone = txtPhone.Text;
+                    editReader.Email = txtEmail.Text;
+                    editReader.Address = txtAddress.Text;
+                    editReader.IdGender = cmbGender.SelectedIndex + 1;
                     AppData.Context.SaveChanges();
-                    MessageBox.Show("Успех", "Пользователь успешно добавлен", MessageBoxButton.OK, MessageBoxImage.Information);
+                    MessageBox.Show("Успех", "Данные читателя успешно изменены", MessageBoxButton.OK, MessageBoxImage.Information);
                     this.Close();
                 }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message.ToString());
+                }
+
             }
-            catch (Exception ex)
+            else
             {
-                MessageBox.Show(ex.Message.ToString());
+                try
+                {
+                    var resultClick = MessageBox.Show("Вы уверены?", "Подтверите добавление", MessageBoxButton.YesNo, MessageBoxImage.Question);
+                    if (resultClick == MessageBoxResult.Yes)
+                    {
+                        // Добавление нового читателя
+                        EF.Reader newReader = new EF.Reader();
+                        newReader.LastName = txtLastName.Text;
+                        newReader.FirstName = txtFirstName.Text;
+                        newReader.Phone = txtPhone.Text;
+                        newReader.Email = txtEmail.Text;
+                        newReader.Address = txtAddress.Text;
+                        newReader.IdGender = cmbGender.SelectedIndex + 1;
+
+                        AppData.Context.Reader.Add(newReader);
+
+                        AppData.Context.SaveChanges();
+                        MessageBox.Show("Успех", "Пользователь успешно добавлен", MessageBoxButton.OK, MessageBoxImage.Information);
+                        this.Close();
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message.ToString());
+                }
+
             }
-           
-           
+
+
         }
     }
 }

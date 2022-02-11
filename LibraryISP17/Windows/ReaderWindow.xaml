@@ -97,7 +97,8 @@
 
         <ListView x:Name="lvReader"
                   Grid.Row="3"
-                  KeyUp="lvReader_KeyUp">
+                  KeyUp="lvReader_KeyUp"
+                  MouseDoubleClick="lvReader_MouseDoubleClick">
             <ListView.View>
                 <GridView>
                     <GridViewColumn Header="Id" Width="30" DisplayMemberBinding="{Binding Id}"/>
