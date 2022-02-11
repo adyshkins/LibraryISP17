@@ -95,7 +95,7 @@ namespace LibraryISP17.Windows
                         {
                             AppData.Context.Reader.Remove(item);
                             AppData.Context.SaveChanges();
-                            MessageBox.Show("Успех", "Пользователь успешно удален", MessageBoxButton.OK, MessageBoxImage.Information);
+                            MessageBox.Show("Пользователь успешно удален", "Успех", MessageBoxButton.OK, MessageBoxImage.Information);
                             Filter();
                         }
                     }
@@ -105,9 +105,6 @@ namespace LibraryISP17.Windows
                     }
                 }
 
-                ///
-                ///
-                ////
             }
 
         }
