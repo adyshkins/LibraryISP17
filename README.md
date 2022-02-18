@@ -20,7 +20,7 @@
 
 
 Если удаление прошло успешно, появится соответствующее сообщение.
-![image](https://user-images.githubusercontent.com/56836526/154622784-7e34f618-67fe-48ff-a11f-0e99b8a73d27.png)
+![image](https://user-images.githubusercontent.com/56836526/154622784-7e34f618-67fe-48ff-a11f-0e99b8a73d27.png) <br>
 
 Кликнув по записи дважды, откроется окно для редактирования выбранной записи. 
 ![image](https://user-images.githubusercontent.com/56836526/154622874-e367c1f4-a952-4505-a1c2-4fd8f592e02e.png)
