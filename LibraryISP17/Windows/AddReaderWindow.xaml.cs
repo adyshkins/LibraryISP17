@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using LibraryISP17.ClassHelper;
+using Microsoft.Win32;
 
 namespace LibraryISP17.Windows
 {
@@ -21,8 +23,8 @@ namespace LibraryISP17.Windows
     public partial class AddReaderWindow : Window
     {
         EF.Reader editReader = new EF.Reader();
-
-        bool isEdit = true;
+        bool isEdit = true; // изменяем или добавляем пользователя
+        string pathPhoto = null; // Для сохранения пути к изображению
 
         public AddReaderWindow()
         {
@@ -37,6 +39,23 @@ namespace LibraryISP17.Windows
         public AddReaderWindow(EF.Reader reader)
         {
             InitializeComponent();
+
+            // вставка изображения
+            if (reader.Photo != null)
+            {
+                using (MemoryStream stream = new MemoryStream(reader.Photo))
+                {
+                    BitmapImage bitmapImage = new BitmapImage();
+                    bitmapImage.BeginInit();
+                    bitmapImage.CacheOption = BitmapCacheOption.OnLoad;
+                    bitmapImage.CreateOptions = BitmapCreateOptions.PreservePixelFormat;
+                    bitmapImage.StreamSource = stream;
+                    bitmapImage.EndInit();
+                    imgUser.Source = bitmapImage;
+
+                }
+            }
+           
 
             //заполнение комбобокса
             cmbGender.ItemsSource = AppData.Context.Gender.ToList();
@@ -130,6 +149,12 @@ namespace LibraryISP17.Windows
                     editReader.Email = txtEmail.Text;
                     editReader.Address = txtAddress.Text;
                     editReader.IdGender = cmbGender.SelectedIndex + 1;
+
+                    if (pathPhoto != null)
+                    {
+                        editReader.Photo = File.ReadAllBytes(pathPhoto);
+                    }
+
                     AppData.Context.SaveChanges();
                     MessageBox.Show("Успех", "Данные читателя успешно изменены", MessageBoxButton.OK, MessageBoxImage.Information);
                     this.Close();
@@ -156,6 +181,11 @@ namespace LibraryISP17.Windows
                         newReader.Address = txtAddress.Text;
                         newReader.IdGender = cmbGender.SelectedIndex + 1;
 
+                        if (pathPhoto != null)
+                        {
+                            newReader.Photo = File.ReadAllBytes(pathPhoto);
+                        }
+
                         AppData.Context.Reader.Add(newReader);
 
                         AppData.Context.SaveChanges();
@@ -171,6 +201,17 @@ namespace LibraryISP17.Windows
             }
 
 
+        }
+
+        private void btnChoosePhoto_Click(object sender, RoutedEventArgs e)
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            if (openFileDialog.ShowDialog() == true)
+            {
+                imgUser.Source = new BitmapImage(new Uri(openFileDialog.FileName));
+
+                pathPhoto = openFileDialog.FileName;
+            }
         }
     }
 }

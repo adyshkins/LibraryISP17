@@ -66,6 +66,7 @@
           <Property Name="Email" Type="nvarchar" MaxLength="100" />
           <Property Name="IdGender" Type="int" Nullable="false" />
           <Property Name="Address" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Photo" Type="varbinary(max)" />
         </EntityType>
         <EntityType Name="ReaderBook">
           <Key>
@@ -314,7 +315,7 @@
             <End Role="Reader" EntitySet="Reader" />
             <End Role="ReaderBook" EntitySet="ReaderBook" />
           </AssociationSet>
-        </EntityContainer>
+          </EntityContainer>
         <ComplexType Name="sp_helpdiagramdefinition_Result">
           <Property Type="Int32" Name="version" Nullable="true" />
           <Property Type="Binary" Name="definition" Nullable="true" />
@@ -396,6 +397,7 @@
           <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="IdGender" Type="Int32" Nullable="false" />
           <Property Name="Address" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Photo" Type="Binary" MaxLength="Max" FixedLength="false" />
           <NavigationProperty Name="Gender" Relationship="LibraryISP17Model.FK_Reader_Gender" FromRole="Reader" ToRole="Gender" />
           <NavigationProperty Name="ReaderBook" Relationship="LibraryISP17Model.FK_ReaderBook_Reader" FromRole="Reader" ToRole="ReaderBook" />
         </EntityType>
@@ -507,7 +509,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-      </Schema>
+        </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
@@ -596,6 +598,7 @@
           <EntitySetMapping Name="Reader">
             <EntityTypeMapping TypeName="LibraryISP17Model.Reader">
               <MappingFragment StoreEntitySet="Reader">
+                <ScalarProperty Name="Photo" ColumnName="Photo" />
                 <ScalarProperty Name="Address" ColumnName="Address" />
                 <ScalarProperty Name="IdGender" ColumnName="IdGender" />
                 <ScalarProperty Name="Email" ColumnName="Email" />
@@ -629,7 +632,7 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-        </EntityContainerMapping>
+          </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
   </edmx:Runtime>

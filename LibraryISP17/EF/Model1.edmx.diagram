@@ -8,9 +8,9 @@
         <EntityTypeShape EntityType="LibraryISP17Model.Author" Width="1.5" PointX="0.75" PointY="1.875" />
         <EntityTypeShape EntityType="LibraryISP17Model.Book" Width="1.5" PointX="3" PointY="1" />
         <EntityTypeShape EntityType="LibraryISP17Model.Employee" Width="1.5" PointX="3" PointY="6" />
-        <EntityTypeShape EntityType="LibraryISP17Model.Gender" Width="1.5" PointX="0.75" PointY="11.125" />
-        <EntityTypeShape EntityType="LibraryISP17Model.Genre" Width="1.5" PointX="0.75" PointY="4.75" />
-        <EntityTypeShape EntityType="LibraryISP17Model.PublishingHouse" Width="1.5" PointX="0.75" PointY="7.875" />
+        <EntityTypeShape EntityType="LibraryISP17Model.Gender" Width="1.5" PointX="0.75" PointY="11.25" />
+        <EntityTypeShape EntityType="LibraryISP17Model.Genre" Width="1.5" PointX="0.75" PointY="7.875" />
+        <EntityTypeShape EntityType="LibraryISP17Model.PublishingHouse" Width="1.5" PointX="0.75" PointY="4.75" />
         <EntityTypeShape EntityType="LibraryISP17Model.Reader" Width="1.5" PointX="3" PointY="10.5" />
         <EntityTypeShape EntityType="LibraryISP17Model.ReaderBook" Width="1.5" PointX="5.25" PointY="1.125" />
         <EntityTypeShape EntityType="LibraryISP17Model.sysdiagrams" Width="1.5" PointX="5.75" PointY="4.75" />
