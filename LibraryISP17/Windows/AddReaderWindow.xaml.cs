@@ -57,7 +57,7 @@ namespace LibraryISP17.Windows
             }
            
 
-            //заполнение комбобокса
+            //заполнение комбобокса /
             cmbGender.ItemsSource = AppData.Context.Gender.ToList();
             cmbGender.DisplayMemberPath = "NameGender";
 
