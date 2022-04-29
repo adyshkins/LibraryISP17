@@ -44,7 +44,7 @@ namespace LibraryISP17.Windows
             else
             {
                 MessageBox.Show("Пользователь с такими данными не найден!");
-            }
+            }////
            
         }
     }
