@@ -24,7 +24,12 @@ namespace LibraryISP17.Windows
         {
             InitializeComponent();
         }
-
+        /// <summary>
+        /// Описание моего личного метода
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        /// /////
         private void btnLogin_Click(object sender, RoutedEventArgs e)
         {
             var userAuth = AppData.Context.Employee.ToList().
